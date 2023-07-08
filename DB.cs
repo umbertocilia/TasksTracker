@@ -57,8 +57,7 @@ internal class DB
     {
         using (SQLiteConnection connection = GetConnection())
         {
-            connection.Open();
-
+            
             string createTableQuery = @"
                 
                 CREATE TABLE IF NOT EXISTS CDV (
@@ -95,8 +94,7 @@ internal class DB
         {
             using (SQLiteConnection connection = GetConnection())
             {
-                connection.Open();
-
+             
                 using (SQLiteCommand command = new SQLiteCommand(query, connection))
                 {
                     using (SQLiteDataAdapter adapter = new SQLiteDataAdapter(command))
@@ -127,20 +125,6 @@ internal class DB
             }
         }
         return isSelect;
-    }
-
-
-    public void ExecuteNonQuery(string query)
-    {
-        using (SQLiteConnection connection = new SQLiteConnection(ConnectionString))
-        {
-            connection.Open();
-
-            using (SQLiteCommand command = new SQLiteCommand(query, connection))
-            {
-                command.ExecuteNonQuery();
-            }
-        }
     }
 
     public void ExecuteNonQuery(string query, Dictionary<string, object> parameters)
